@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize";
 import db from "../config/database.js";
 
-const Order = db.define("orders", {
-  order_id: { 
+const Booking = db.define("bookings", {
+  booking_id: { 
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
@@ -17,14 +17,20 @@ const Order = db.define("orders", {
   email: {
     type: DataTypes.STRING,
   },
-  origin: {
+  from: {
     type: DataTypes.STRING,
   },
-  destination: {
+  to: {
     type: DataTypes.STRING,
   },
   date_time: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
+  },
+  departure: {
+    type: DataTypes.TIME,
+  },
+  arrival: {
+    type: DataTypes.TIME,
   },
   price: {
     type: DataTypes.STRING,
@@ -35,4 +41,4 @@ const Order = db.define("orders", {
 });
 
 
-export default Order;
+export default Booking;

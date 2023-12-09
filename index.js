@@ -4,7 +4,8 @@ import express from "express";
 import cors from "cors";
 import db from "./config/database.js";
 import UserRoutes from "./routes/UserRoutes.js";
-import OrderRoutes from "./routes/OrderRoutes.js";
+import BookingRoutes from "./routes/BookingRoutes.js";
+import ContactRoutes from "./routes/ContactRoutes.js";
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -13,7 +14,8 @@ app.use(cors());
 
 // Route
 app.use(UserRoutes);
-app.use(OrderRoutes);
+app.use(BookingRoutes);
+app.use(ContactRoutes);
 
 db.sync({ alter: true })
   .then(() => {

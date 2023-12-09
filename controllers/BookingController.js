@@ -1,6 +1,5 @@
 import db from "../config/database.js";
-import Order from "../models/OrderModel.js";
-
+import Booking from "../models/BookingModel.js";
 
 // Fungsi untuk menghasilkan nomor tiket secara otomatis
 export const generateTicketNumber = () => {
@@ -16,33 +15,37 @@ export const generateTicketNumber = () => {
     return ticketNumber;
   };
   
-export const createOrder = async (req, res) => {
+export const createBooking = async (req, res) => {
   try {
     const ticketNumber = generateTicketNumber();
     const {
       name,
       email,
-      origin,
-      destination,
-      date_time,
+      from,
+      to,
+      date,
+      departure,
+      arrival,
       price,
       total_passanger,
     } = req.body;
 
-    // Membuat order baru
-    const newOrder = await Order.create({
+    // Membuat booking baru
+    const newBooking = await Booking.create({
         ticketNumber,
         name,
         email,
-        origin,
-        destination,
-        date_time,
+        from,
+        to,
+        date,
+        departure,
+        arrival,
         price,
         total_passanger,
     });
 
     // Pesan tambahan untuk respons JSON
-    const responseMessage = `Data telah diterima dengan nomor tiket ${ticketNumber}`;
+    const responseMessage = `Data Booking telah diterima dengan nomor tiket ${ticketNumber}`;
 
     // Mengirim respons JSON dengan pesan tambahan
     res.status(201).json({ message: responseMessage });
@@ -52,24 +55,24 @@ export const createOrder = async (req, res) => {
   }
 };
 
-export const getOrderByTicketNumber = async (req, res) => {
+export const getBookingByTicketNumber = async (req, res) => {
   try {
     const { ticketNumber } = req.params;
 
-    const order = await Order.findOne({
+    const booking = await Booking.findOne({
       where: { ticketNumber },
-      attributes: { exclude: ["order_id", "createdAt", "updatedAt"] },
+      attributes: { exclude: ["booking_id", "createdAt", "updatedAt"] },
     });
 
-    if (!order) {
-      return res.status(404).json({ error: "Order tidak ditemukan" });
+    if (!booking) {
+      return res.status(404).json({ error: "Booking tidak ditemukan" });
     }
 
     // Pesan tambahan untuk respons JSON
-    const responseMessage = `Order dengan nomor tiket ${ticketNumber}`;
+    const responseMessage = `Booking dengan nomor tiket ${ticketNumber}`;
 
     // Mengirim respons JSON dengan pesan tambahan dan status 200
-    res.status(200).json({ message: responseMessage, order });
+    res.status(200).json({ message: responseMessage, booking });
 
   } catch (error) {
     res.status(500).json({ error: error.message });
