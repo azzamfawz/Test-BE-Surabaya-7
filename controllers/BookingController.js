@@ -19,29 +19,33 @@ export const createBooking = async (req, res) => {
   try {
     const ticketNumber = generateTicketNumber();
     const {
+      salutation,
       name,
       email,
+      phone_number,
       from,
       to,
       date,
-      departure,
-      arrival,
-      price,
-      total_passanger,
+      // departure,
+      // arrival,
+      passanger,
+      totalPrice,
     } = req.body;
 
     // Membuat booking baru
     const newBooking = await Booking.create({
         ticketNumber,
+        salutation,
         name,
         email,
+        phone_number,
         from,
         to,
         date,
-        departure,
-        arrival,
-        price,
-        total_passanger,
+        // departure,
+        // arrival,
+        passanger,
+        totalPrice,
     });
 
     // Pesan tambahan untuk respons JSON

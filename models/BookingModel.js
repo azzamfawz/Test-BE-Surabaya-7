@@ -11,10 +11,16 @@ const Booking = db.define("bookings", {
     type: DataTypes.STRING,
     unique: true,
   },
+  salutation: {
+    type: DataTypes.STRING,
+  },
   name: {
     type: DataTypes.STRING,
   },
   email: {
+    type: DataTypes.STRING,
+  },
+  phone_number: {
     type: DataTypes.STRING,
   },
   from: {
@@ -23,19 +29,19 @@ const Booking = db.define("bookings", {
   to: {
     type: DataTypes.STRING,
   },
-  date_time: {
+  date: {
     type: DataTypes.DATEONLY,
   },
-  departure: {
-    type: DataTypes.TIME,
+  // departure: {
+  //   type: DataTypes.TIME,
+  // },
+  // arrival: {
+  //   type: DataTypes.TIME,
+  // },
+  passanger: {
+    type: DataTypes.INTEGER,
   },
-  arrival: {
-    type: DataTypes.TIME,
-  },
-  price: {
-    type: DataTypes.STRING,
-  },
-  total_passanger: {
+  totalPrice: {
     type: DataTypes.STRING,
   },
 });
