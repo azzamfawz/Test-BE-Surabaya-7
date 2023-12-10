@@ -12,6 +12,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.send("api is working");
+});
 // Route
 app.use(UserRoutes);
 app.use(BookingRoutes);
