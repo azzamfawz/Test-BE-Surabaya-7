@@ -28,7 +28,7 @@ export const createBooking = async (req, res) => {
       date,
       // departure,
       // arrival,
-      passanger,
+      passangers,
       totalPrice,
     } = req.body;
 
@@ -44,7 +44,7 @@ export const createBooking = async (req, res) => {
         date,
         // departure,
         // arrival,
-        passanger,
+        passangers,
         totalPrice,
     });
 
